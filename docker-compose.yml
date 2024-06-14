@@ -3,7 +3,7 @@ version: "3.8"
 services:
   postgres:
     image: "postgres:16.2"
-    container_name: "timetable-postgres"
+    container_name: "lab-control-postgres"
     restart: unless-stopped
     ports:
       - "5432:5432"
