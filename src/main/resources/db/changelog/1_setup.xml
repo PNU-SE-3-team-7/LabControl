@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="create_schema" author="JJerome">
+        <createTable tableName="course">
+            <column name="id" type="varchar(40)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="course_pk"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="summary" type="varchar(255)"/>
+        </createTable>
+        
+        <createTable tableName="course_member">
+            <column name="user_id" type="varchar(40)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="course_id" type="varchar(40)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="member_type" type="varchar(25)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="assigment">
+            <column name="id" type="varchar(40)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="assigment_pk"/>
+            </column>
+            <column name="course_id" type="varchar(40)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="parent_id" type="varchar(40)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="title" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="varchar(255)"/>
+            <column name="type" type="varchar(40)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="submission_enabled" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_date" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="due_date" type="datetime"/>
+            <column name="visibility_start" type="datetime"/>
+            <column name="visibility_end" type="datetime"/>
+            <column name="visibility" type="boolean" defaultValue="false">
+                <constraints nullable="false"/>
+            </column>
+            <column name="grade_type" type="varchar(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="auto_type" type="varchar(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="weight" type="int" defaultValue="1">
+                <constraints nullable="false"/>
+            </column>
+            <column name="threshold" type="int"/>
+            <column name="sequence" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createIndex tableName="assigment" indexName="assigment_index_1">
+            <column name="course_id"/>
+        </createIndex>
+        <createIndex tableName="assigment" indexName="assigment_index_2">
+            <column name="parent_id"/>
+        </createIndex>
+
+        <createTable tableName="assigment_comment">
+            <column name="id" type="varchar(40)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="assigment_comment_pk"/>
+            </column>
+            <column name="assigment_id" type="varchar(40)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sender_id" type="varchar(40)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="message" type="varchar(1000)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="deleted" type="boolean" defaultValue="false">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createIndex tableName="assigment_comment" indexName="assigment_comment_index_1">
+            <column name="assigment_id"/>
+        </createIndex>
+        <createIndex tableName="assigment_comment" indexName="assigment_comment_index_2">
+            <column name="sender_id"/>
+        </createIndex>
+
+        <createTable tableName="submission">
+            <column name="id" type="varchar(40)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="submission_pk"/>
+            </column>
+            <column name="assigment_id" type="varchar(40)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="varchar(40)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="parent_id" type="varchar(40)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="turned_in_date" type="datetime"/>
+            <column name="grade" type="int"/>
+            <column name="auto_grade" type="int"/>
+            <column name="create_date" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="update_date" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="accuracy_grade" type="varchar(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="completion_grade" type="varchar(20)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createIndex tableName="submission" indexName="submission_index_1">
+            <column name="assigment_id"/>
+        </createIndex>
+        <createIndex tableName="submission" indexName="submission_index_2">
+            <column name="user_id"/>
+        </createIndex>
+
+        <createTable tableName="submission_comment">
+            <column name="id" type="varchar(40)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="submission_comment_pk"/>
+            </column>
+            <column name="submission_id" type="varchar(40)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sender_id" type="varchar(40)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="message" type="varchar(1000)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createIndex tableName="submission_comment" indexName="submission_comment_index_1">
+            <column name="submission_id"/>
+        </createIndex>
+        <createIndex tableName="submission_comment" indexName="submission_comment_index_2">
+            <column name="sender_id"/>
+        </createIndex>
+
+        <createTable tableName="attached_content">
+            <column name="id" type="varchar(40)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="assigment_comment_pk"/>
+            </column>
+            <column name="assigment_id" type="varchar(40)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="submission_id" type="varchar(40)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="file_name" type="varchar(200)"/>
+            <column name="file_uri" type="varchar(2048)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createIndex tableName="attached_content" indexName="attached_content_index_1">
+            <column name="assigment_id"/>
+        </createIndex>
+        <createIndex tableName="attached_content" indexName="attached_content_index_2">
+            <column name="submission_id"/>
+        </createIndex>
+    </changeSet>
+
+    <changeSet id="add_setup_fk" author="JJerome">
+
+<!--        assigment               -->
+
+        <addForeignKeyConstraint baseTableName="assigment"
+                                 baseColumnNames="course_id"
+                                 constraintName="assigment_fk1"
+                                 referencedTableName="course"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="assigment"
+                                 baseColumnNames="parent_id"
+                                 constraintName="assigment_fk2"
+                                 referencedTableName="assigment"
+                                 referencedColumnNames="id"/>
+
+<!--        assigment_comment       -->
+
+        <addForeignKeyConstraint baseTableName="assigment_comment"
+                                 baseColumnNames="assigment_id"
+                                 constraintName="assigment_comment_fk1"
+                                 referencedTableName="assigment"
+                                 referencedColumnNames="id"/>
+
+<!--        submission              -->
+
+        <addForeignKeyConstraint baseTableName="submission"
+                                 baseColumnNames="assigment_id"
+                                 constraintName="submission_fk1"
+                                 referencedTableName="assigment"
+                                 referencedColumnNames="id"/>
+
+<!--        submission_comment              -->
+
+        <addForeignKeyConstraint baseTableName="submission_comment"
+                                 baseColumnNames="submission_id"
+                                 constraintName="submission_comment_fk1"
+                                 referencedTableName="submission"
+                                 referencedColumnNames="id"/>
+
+<!--        attached_content              -->
+
+        <addForeignKeyConstraint baseTableName="attached_content"
+                                 baseColumnNames="submission_id"
+                                 constraintName="attached_content_fk1"
+                                 referencedTableName="submission"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="attached_content"
+                                 baseColumnNames="assignment_id"
+                                 constraintName="attached_content_fk2"
+                                 referencedTableName="assigment"
+                                 referencedColumnNames="id"/>
+
+    </changeSet>
+</databaseChangeLog>
