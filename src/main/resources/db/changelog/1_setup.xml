@@ -4,7 +4,7 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                    https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
 
-    <changeSet id="create_schema" author="JJerome">
+    <changeSet id="1" author="JJerome">
         <createTable tableName="course">
             <column name="id" type="varchar(40)">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="course_pk"/>
@@ -26,6 +26,14 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
+
+        <createIndex tableName="course_member" indexName="course_member_idx1">
+            <column name="user_id"/>
+        </createIndex>
+
+        <createIndex tableName="course_member" indexName="course_member_idx2">
+            <column name="course_id"/>
+        </createIndex>
 
         <createTable tableName="assignment">
             <column name="id" type="varchar(40)">
@@ -73,10 +81,10 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
-        <createIndex tableName="assignment" indexName="assignment_index_1">
+        <createIndex tableName="assignment" indexName="assignment_idx1">
             <column name="course_id"/>
         </createIndex>
-        <createIndex tableName="assignment" indexName="assignment_index_2">
+        <createIndex tableName="assignment" indexName="assignment_idx2">
             <column name="parent_id"/>
         </createIndex>
 
@@ -100,10 +108,10 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
-        <createIndex tableName="assignment_comment" indexName="assignment_comment_index_1">
+        <createIndex tableName="assignment_comment" indexName="assignment_comment_idx1">
             <column name="assignment_id"/>
         </createIndex>
-        <createIndex tableName="assignment_comment" indexName="assignment_comment_index_2">
+        <createIndex tableName="assignment_comment" indexName="assignment_comment_idx2">
             <column name="sender_id"/>
         </createIndex>
 
@@ -136,10 +144,10 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
-        <createIndex tableName="submission" indexName="submission_index_1">
+        <createIndex tableName="submission" indexName="submission_idx1">
             <column name="assignment_id"/>
         </createIndex>
-        <createIndex tableName="submission" indexName="submission_index_2">
+        <createIndex tableName="submission" indexName="submission_idx2">
             <column name="user_id"/>
         </createIndex>
 
@@ -160,19 +168,33 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
-        <createIndex tableName="submission_comment" indexName="submission_comment_index_1">
+        <createIndex tableName="submission_comment" indexName="submission_comment_idx1">
             <column name="submission_id"/>
         </createIndex>
-        <createIndex tableName="submission_comment" indexName="submission_comment_index_2">
+        <createIndex tableName="submission_comment" indexName="submission_comment_idx2">
             <column name="sender_id"/>
         </createIndex>
 
-        <createTable tableName="attached_content">
+        <createTable tableName="assignment_attached_content">
             <column name="id" type="varchar(40)">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="attached_content_pk"/>
+                <constraints nullable="false" primaryKey="true" primaryKeyName="assignment_attached_content_pk"/>
             </column>
             <column name="assignment_id" type="varchar(40)">
                 <constraints nullable="false"/>
+            </column>
+            <column name="file_name" type="varchar(200)"/>
+            <column name="file_uri" type="varchar(2048)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createIndex tableName="assignment_attached_content" indexName="assignment_attached_content_idx1">
+            <column name="assignment_id"/>
+        </createIndex>
+
+        <createTable tableName="submission_attached_content">
+            <column name="id" type="varchar(40)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="submission_attached_content_pk"/>
             </column>
             <column name="submission_id" type="varchar(40)">
                 <constraints nullable="false"/>
@@ -182,10 +204,8 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
-        <createIndex tableName="attached_content" indexName="attached_content_index_1">
-            <column name="assignment_id"/>
-        </createIndex>
-        <createIndex tableName="attached_content" indexName="attached_content_index_2">
+
+        <createIndex tableName="submission_attached_content" indexName="submission_attached_content_idx1">
             <column name="submission_id"/>
         </createIndex>
     </changeSet>
@@ -232,15 +252,15 @@
 
 <!--        attached_content              -->
 
-        <addForeignKeyConstraint baseTableName="attached_content"
+        <addForeignKeyConstraint baseTableName="submission_attached_content"
                                  baseColumnNames="submission_id"
-                                 constraintName="attached_content_fk1"
+                                 constraintName="submission_attached_content_fk1"
                                  referencedTableName="submission"
                                  referencedColumnNames="id"/>
 
-        <addForeignKeyConstraint baseTableName="attached_content"
+        <addForeignKeyConstraint baseTableName="assignment_attached_content"
                                  baseColumnNames="assignment_id"
-                                 constraintName="attached_content_fk2"
+                                 constraintName="assignment_attached_content_fk1"
                                  referencedTableName="assignment"
                                  referencedColumnNames="id"/>
 

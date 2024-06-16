@@ -6,8 +6,9 @@ spring:
   liquibase:
     enabled: true
     change-log: classpath:db/changelog-master.xml
-    default-schema: labs
-    driver-class-name: org.postgresql.Driver
+    default-schema: lab_control
+  profiles:
+    active: ${LAB_ACTIVE_PROFILE:local}
 
 ---
 spring:
@@ -17,7 +18,7 @@ spring:
   liquibase:
     contexts: local
   datasource:
-    url: jdbc:postgresql://localhost:5432/labs
+    url: jdbc:postgresql://localhost:5432/lab_control
     username: postgres
     password: postgres
   jpa:
@@ -31,6 +32,6 @@ spring:
   liquibase:
     contexts: prod
   datasource:
-    url: ${DB_URL}
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
+    url: ${LAB_DB_URL}
+    username: ${LAB_DB_USERNAME}
+    password: ${LAB_DB_PASSWORD}
