@@ -6,6 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.IdClass;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,12 +18,14 @@ import java.io.Serializable;
 @Table(name = "course_member")
 @IdClass(CourseMember.IdClass.class)
 public class CourseMember {
+    @NotBlank
     @Id
     @Column(name = "user_id")
     private String userId;
     @Id
     @Column(name = "course_id")
     private String courseId;
+    @NotBlank
     @Column(name = "member_type")
     private MemberType memberType;
 

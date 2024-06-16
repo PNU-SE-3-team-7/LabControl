@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,6 +16,7 @@ import java.util.List;
 @Entity
 @Table(name = "course")
 public class Course extends BaseEntity {
+    @NotBlank
     @Column(name = "name")
     private String name;
     @Column(name = "summary")
