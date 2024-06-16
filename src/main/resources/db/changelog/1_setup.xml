@@ -129,12 +129,13 @@
                 <constraints nullable="false"/>
             </column>
             <column name="turned_in_date" type="datetime"/>
+            <column name="turned_in" type="varchar(20)"/>
             <column name="grade" type="int"/>
             <column name="auto_grade" type="int"/>
-            <column name="create_date" type="datetime">
+            <column name="created_date" type="datetime">
                 <constraints nullable="false"/>
             </column>
-            <column name="update_date" type="datetime">
+            <column name="updated_date" type="datetime">
                 <constraints nullable="false"/>
             </column>
             <column name="accuracy_grade" type="varchar(20)">
@@ -170,9 +171,6 @@
         </createTable>
         <createIndex tableName="submission_comment" indexName="submission_comment_idx1">
             <column name="submission_id"/>
-        </createIndex>
-        <createIndex tableName="submission_comment" indexName="submission_comment_idx2">
-            <column name="sender_id"/>
         </createIndex>
 
         <createTable tableName="assignment_attached_content">
