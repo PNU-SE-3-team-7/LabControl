@@ -111,9 +111,6 @@
         <createIndex tableName="assignment_comment" indexName="assignment_comment_idx1">
             <column name="assignment_id"/>
         </createIndex>
-        <createIndex tableName="assignment_comment" indexName="assignment_comment_idx2">
-            <column name="sender_id"/>
-        </createIndex>
 
         <createTable tableName="submission">
             <column name="id" type="varchar(40)">
