@@ -1,10 +1,8 @@
 spring:
   application:
     name: LabControl
-  jpa:
-    hibernate:
-      ddl-auto: validate
-
+  datasource:
+    driver-class-name: org.postgresql.Driver
   liquibase:
     enabled: true
     change-log: classpath:db/changelog-master.xml
@@ -18,16 +16,21 @@ spring:
       on-profile: local
   liquibase:
     contexts: local
-    url: jdbc:postgresql://localhost:5432/labs
-    user: postgres
-    password: postgres
   datasource:
     url: jdbc:postgresql://localhost:5432/labs
-    driver-class-name: org.postgresql.Driver
-
+    username: postgres
+    password: postgres
+  jpa:
+    show-sql: true
 
 ---
 spring:
   config:
     activate:
       on-profile: production
+  liquibase:
+    contexts: prod
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
