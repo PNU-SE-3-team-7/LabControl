@@ -209,6 +209,14 @@
 
 <!--        assignment               -->
 
+        <addForeignKeyConstraint baseTableName="course_member"
+                                 baseColumnNames="course_id"
+                                 constraintName="course_member_fk1"
+                                 referencedTableName="course"
+                                 referencedColumnNames="id"/>
+
+<!--        assignment               -->
+
         <addForeignKeyConstraint baseTableName="assignment"
                                  baseColumnNames="course_id"
                                  constraintName="assignment_fk1"
