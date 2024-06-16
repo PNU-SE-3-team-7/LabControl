@@ -27,9 +27,9 @@
             </column>
         </createTable>
 
-        <createTable tableName="assigment">
+        <createTable tableName="assignment">
             <column name="id" type="varchar(40)">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="assigment_pk"/>
+                <constraints nullable="false" primaryKey="true" primaryKeyName="assignment_pk"/>
             </column>
             <column name="course_id" type="varchar(40)">
                 <constraints nullable="false"/>
@@ -73,18 +73,18 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
-        <createIndex tableName="assigment" indexName="assigment_index_1">
+        <createIndex tableName="assignment" indexName="assignment_index_1">
             <column name="course_id"/>
         </createIndex>
-        <createIndex tableName="assigment" indexName="assigment_index_2">
+        <createIndex tableName="assignment" indexName="assignment_index_2">
             <column name="parent_id"/>
         </createIndex>
 
-        <createTable tableName="assigment_comment">
+        <createTable tableName="assignment_comment">
             <column name="id" type="varchar(40)">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="assigment_comment_pk"/>
+                <constraints nullable="false" primaryKey="true" primaryKeyName="assignment_comment_pk"/>
             </column>
-            <column name="assigment_id" type="varchar(40)">
+            <column name="assignment_id" type="varchar(40)">
                 <constraints nullable="false"/>
             </column>
             <column name="sender_id" type="varchar(40)">
@@ -100,10 +100,10 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
-        <createIndex tableName="assigment_comment" indexName="assigment_comment_index_1">
-            <column name="assigment_id"/>
+        <createIndex tableName="assignment_comment" indexName="assignment_comment_index_1">
+            <column name="assignment_id"/>
         </createIndex>
-        <createIndex tableName="assigment_comment" indexName="assigment_comment_index_2">
+        <createIndex tableName="assignment_comment" indexName="assignment_comment_index_2">
             <column name="sender_id"/>
         </createIndex>
 
@@ -111,7 +111,7 @@
             <column name="id" type="varchar(40)">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="submission_pk"/>
             </column>
-            <column name="assigment_id" type="varchar(40)">
+            <column name="assignment_id" type="varchar(40)">
                 <constraints nullable="false"/>
             </column>
             <column name="user_id" type="varchar(40)">
@@ -137,7 +137,7 @@
             </column>
         </createTable>
         <createIndex tableName="submission" indexName="submission_index_1">
-            <column name="assigment_id"/>
+            <column name="assignment_id"/>
         </createIndex>
         <createIndex tableName="submission" indexName="submission_index_2">
             <column name="user_id"/>
@@ -169,9 +169,9 @@
 
         <createTable tableName="attached_content">
             <column name="id" type="varchar(40)">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="assigment_comment_pk"/>
+                <constraints nullable="false" primaryKey="true" primaryKeyName="attached_content_pk"/>
             </column>
-            <column name="assigment_id" type="varchar(40)">
+            <column name="assignment_id" type="varchar(40)">
                 <constraints nullable="false"/>
             </column>
             <column name="submission_id" type="varchar(40)">
@@ -183,7 +183,7 @@
             </column>
         </createTable>
         <createIndex tableName="attached_content" indexName="attached_content_index_1">
-            <column name="assigment_id"/>
+            <column name="assignment_id"/>
         </createIndex>
         <createIndex tableName="attached_content" indexName="attached_content_index_2">
             <column name="submission_id"/>
@@ -192,34 +192,34 @@
 
     <changeSet id="add_setup_fk" author="JJerome">
 
-<!--        assigment               -->
+<!--        assignment               -->
 
-        <addForeignKeyConstraint baseTableName="assigment"
+        <addForeignKeyConstraint baseTableName="assignment"
                                  baseColumnNames="course_id"
-                                 constraintName="assigment_fk1"
+                                 constraintName="assignment_fk1"
                                  referencedTableName="course"
                                  referencedColumnNames="id"/>
 
-        <addForeignKeyConstraint baseTableName="assigment"
+        <addForeignKeyConstraint baseTableName="assignment"
                                  baseColumnNames="parent_id"
-                                 constraintName="assigment_fk2"
-                                 referencedTableName="assigment"
+                                 constraintName="assignment_fk2"
+                                 referencedTableName="assignment"
                                  referencedColumnNames="id"/>
 
-<!--        assigment_comment       -->
+<!--        assignment_comment       -->
 
-        <addForeignKeyConstraint baseTableName="assigment_comment"
-                                 baseColumnNames="assigment_id"
-                                 constraintName="assigment_comment_fk1"
-                                 referencedTableName="assigment"
+        <addForeignKeyConstraint baseTableName="assignment_comment"
+                                 baseColumnNames="assignment_id"
+                                 constraintName="assignment_comment_fk1"
+                                 referencedTableName="assignment"
                                  referencedColumnNames="id"/>
 
 <!--        submission              -->
 
         <addForeignKeyConstraint baseTableName="submission"
-                                 baseColumnNames="assigment_id"
+                                 baseColumnNames="assignment_id"
                                  constraintName="submission_fk1"
-                                 referencedTableName="assigment"
+                                 referencedTableName="assignment"
                                  referencedColumnNames="id"/>
 
 <!--        submission_comment              -->
@@ -241,7 +241,7 @@
         <addForeignKeyConstraint baseTableName="attached_content"
                                  baseColumnNames="assignment_id"
                                  constraintName="attached_content_fk2"
-                                 referencedTableName="assigment"
+                                 referencedTableName="assignment"
                                  referencedColumnNames="id"/>
 
     </changeSet>
