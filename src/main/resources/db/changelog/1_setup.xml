@@ -240,6 +240,12 @@
                                  referencedTableName="assignment"
                                  referencedColumnNames="id"/>
 
+        <addForeignKeyConstraint baseTableName="submission"
+                                 baseColumnNames="parent_id"
+                                 constraintName="submission_fk2"
+                                 referencedTableName="submission"
+                                 referencedColumnNames="id"/>
+
 <!--        submission_comment              -->
 
         <addForeignKeyConstraint baseTableName="submission_comment"
