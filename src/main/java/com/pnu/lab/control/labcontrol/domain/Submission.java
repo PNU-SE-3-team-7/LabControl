@@ -25,8 +25,8 @@ public class Submission extends BaseEntity {
     @Column(name = "turned_in_date")
     private LocalDateTime turnedInDate;
     @Enumerated(EnumType.STRING)
-    @Column(name = "turned_in")
-    private SubmissionStatus turnedIn;
+    @Column(name = "submission_status")
+    private SubmissionStatus submissionStatus;
     @Column(name = "grade")
     private int grade;
     @Column(name = "auto_grade")

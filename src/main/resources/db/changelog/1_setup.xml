@@ -126,7 +126,7 @@
                 <constraints nullable="false"/>
             </column>
             <column name="turned_in_date" type="datetime"/>
-            <column name="turned_in" type="varchar(20)"/>
+            <column name="submission_status" type="varchar(20)"/>
             <column name="grade" type="int"/>
             <column name="auto_grade" type="int"/>
             <column name="created_date" type="datetime">
