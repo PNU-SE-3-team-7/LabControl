@@ -3,6 +3,8 @@ package com.pnu.lab.control.labcontrol.domain;
 import com.pnu.lab.control.labcontrol.constant.MemberType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 import jakarta.persistence.IdClass;
 import jakarta.persistence.Table;
@@ -26,6 +28,7 @@ public class CourseMember {
     @Column(name = "course_id")
     private String courseId;
     @NotBlank
+    @Enumerated(EnumType.STRING)
     @Column(name = "member_type")
     private MemberType memberType;
 
