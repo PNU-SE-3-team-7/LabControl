@@ -1,0 +1,37 @@
+spring:
+  application:
+    name: LabControl
+  datasource:
+    driver-class-name: org.postgresql.Driver
+  liquibase:
+    enabled: true
+    change-log: classpath:db/changelog-master.xml
+    default-schema: lab_control
+  profiles:
+    active: ${LAB_ACTIVE_PROFILE:local}
+
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+  liquibase:
+    contexts: local
+  datasource:
+    url: jdbc:postgresql://localhost:5432/lab_control
+    username: postgres
+    password: postgres
+  jpa:
+    show-sql: true
+
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+  liquibase:
+    contexts: prod
+  datasource:
+    url: ${LAB_DB_URL}
+    username: ${LAB_DB_USERNAME}
+    password: ${LAB_DB_PASSWORD}
