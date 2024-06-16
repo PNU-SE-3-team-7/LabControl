@@ -207,7 +207,7 @@
 
     <changeSet id="add_setup_fk" author="JJerome">
 
-<!--        course_member               -->
+<!--        course_member           -->
 
         <addForeignKeyConstraint baseTableName="course_member"
                                  baseColumnNames="course_id"
