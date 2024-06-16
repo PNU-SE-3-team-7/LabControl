@@ -27,7 +27,7 @@ spring:
 spring:
   config:
     activate:
-      on-profile: production
+      on-profile: prod
   liquibase:
     contexts: prod
   datasource:
