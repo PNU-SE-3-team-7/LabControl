@@ -13,6 +13,12 @@ public class AssignmentCommentService extends AbstractSearchService<AssignmentCo
     private final AssignmentCommentRepository repository;
 
     @Override
+    public void delete(AssignmentComment comment) {
+        comment.setDeleted(true);
+        update(comment);
+    }
+
+    @Override
     public Class<AssignmentComment> getType() {
         return AssignmentComment.class;
     }
@@ -20,11 +26,5 @@ public class AssignmentCommentService extends AbstractSearchService<AssignmentCo
     @Override
     public BaseSearchRepository<AssignmentComment> getRepository() {
         return repository;
-    }
-
-    @Override
-    public void delete(AssignmentComment comment) {
-        comment.setDeleted(true);
-        update(comment);
     }
 }
