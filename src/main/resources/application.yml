@@ -9,6 +9,9 @@ spring:
     default-schema: lab_control
   profiles:
     active: ${LAB_ACTIVE_PROFILE:local}
+  jpa:
+    hibernate:
+      ddl-auto: validate
 
 ---
 spring:
