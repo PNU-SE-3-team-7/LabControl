@@ -29,13 +29,8 @@ public class AssignmentCommentController {
     @PostMapping("/list")
     public List<AssignmentComment> getList(@Valid @RequestBody SearchRequest searchRequest) {
         return service.getList(searchRequest);
-
     }
 
-    @GetMapping("/{id}")
-    public AssignmentComment getById(@PathVariable String id) {
-        return service.findOne(id);
-    }
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable String id) {

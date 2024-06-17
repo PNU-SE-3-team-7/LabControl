@@ -21,4 +21,10 @@ public class AssignmentCommentService extends AbstractSearchService<AssignmentCo
     public BaseSearchRepository<AssignmentComment> getRepository() {
         return repository;
     }
+
+    @Override
+    public void delete(AssignmentComment comment) {
+        comment.setDeleted(true);
+        update(comment);
+    }
 }

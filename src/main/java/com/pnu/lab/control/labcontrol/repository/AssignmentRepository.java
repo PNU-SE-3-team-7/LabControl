@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface AssignmentRepository extends BaseSearchRepository<Assignment> {
     QAssignment qAssignment = QAssignment.assignment;
+
     @Override
     default EntityPathBase<Assignment> getQEntity() {
         return qAssignment;

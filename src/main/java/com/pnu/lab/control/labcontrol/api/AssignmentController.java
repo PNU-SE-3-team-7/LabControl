@@ -36,7 +36,6 @@ public class AssignmentController {
     @PostMapping("/list")
     public List<Assignment> getList(@Valid @RequestBody SearchRequest searchRequest) {
         return service.getList(searchRequest);
-
     }
 
     @GetMapping("/{id}")

@@ -29,7 +29,6 @@ public class SubmissionController {
     @PostMapping("/list")
     public List<Submission> getList(@Valid @RequestBody SearchRequest searchRequest) {
         return service.getList(searchRequest);
-
     }
 
     @GetMapping("/{id}")
