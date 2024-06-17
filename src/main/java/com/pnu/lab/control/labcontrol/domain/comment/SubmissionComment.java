@@ -12,5 +12,5 @@ import lombok.Setter;
 @Table(name = "submission_comment")
 public class SubmissionComment extends CommentBase {
     @Column(name = "submission_id")
-    private String assignmentId;
+    private String submissionId;
 }
