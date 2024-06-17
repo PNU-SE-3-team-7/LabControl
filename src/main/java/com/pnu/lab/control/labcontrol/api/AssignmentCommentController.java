@@ -31,7 +31,6 @@ public class AssignmentCommentController {
         return service.getList(searchRequest);
     }
 
-
     @DeleteMapping("/{id}")
     public void delete(@PathVariable String id) {
         service.delete(id);
