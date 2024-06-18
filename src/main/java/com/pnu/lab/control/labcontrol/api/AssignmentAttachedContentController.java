@@ -8,7 +8,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,11 +24,6 @@ public class AssignmentAttachedContentController {
     @PostMapping
     public AssignmentAttachedContent create(@Valid @RequestBody AssignmentAttachedContent assignmentAttachedContent) {
         return service.create(assignmentAttachedContent);
-    }
-
-    @PutMapping
-    public AssignmentAttachedContent update(@Valid @RequestBody AssignmentAttachedContent assignmentAttachedContent) {
-        return service.update(assignmentAttachedContent);
     }
 
     @PostMapping("/list")
