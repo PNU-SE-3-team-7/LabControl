@@ -2,13 +2,13 @@ package com.pnu.lab.control.labcontrol.service;
 
 import com.pnu.lab.control.labcontrol.domain.comment.AssignmentComment;
 import com.pnu.lab.control.labcontrol.repository.AssignmentCommentRepository;
-import com.pnu.lab.control.labcontrol.repository.BaseSearchRepository;
+import com.pnu.lab.control.labcontrol.repository.BaseCommentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class AssignmentCommentService extends AbstractSearchService<AssignmentComment> {
+public class AssignmentCommentService extends AbstractCommentService<AssignmentComment> {
 
     private final AssignmentCommentRepository repository;
 
@@ -24,7 +24,7 @@ public class AssignmentCommentService extends AbstractSearchService<AssignmentCo
     }
 
     @Override
-    public BaseSearchRepository<AssignmentComment> getRepository() {
+    public BaseCommentRepository<AssignmentComment> getRepository() {
         return repository;
     }
 }
