@@ -2,6 +2,7 @@ package com.pnu.lab.control.labcontrol.service;
 
 import com.pnu.lab.control.labcontrol.domain.BaseEntity;
 import com.pnu.lab.control.labcontrol.exception.EntityNotFoundException;
+import com.pnu.lab.control.labcontrol.repository.BaseRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,6 +32,6 @@ public abstract class AbstractBaseService<T extends BaseEntity> {
 
     public abstract Class<T> getType();
 
-    public abstract JpaRepository<T, String> getRepository();
+    public abstract BaseRepository<T> getRepository();
 
 }

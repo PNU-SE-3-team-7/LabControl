@@ -11,6 +11,15 @@ import org.springframework.stereotype.Service;
 public class SubmissionService extends AbstractSearchService<Submission> {
 
     private final SubmissionRepository repository;
+    private final SubmissionCommentService commentService;
+    private final SubmissionAttachedContentService attachedContentService;
+
+    @Override
+    public void delete(Submission entity) {
+        commentService.deleteByPrimaryObjectId(entity.getId());
+        attachedContentService.deleteByPrimaryObjectId(entity.getId());
+        super.delete(entity);
+    }
 
     @Override
     public Class<Submission> getType() {

@@ -17,6 +17,13 @@ public interface BaseCommentRepository<T extends CommentBase> extends BaseSearch
                 .fetch();
     }
 
+    default void deleteByPrimaryObjectId(String primaryObjectId) {
+        QueryDslFactory.getQueryFactory()
+                .delete(getQEntity())
+                .where(getPrimaryObjectIdPath().eq(primaryObjectId))
+                .execute();
+    }
+
     StringPath getPrimaryObjectIdPath();
 
 }

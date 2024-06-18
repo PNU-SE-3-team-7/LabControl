@@ -12,6 +12,10 @@ public abstract class AbstractAttachedContentService<T extends AttachedContentBa
         return getRepository().getAttachedContentList(request.getPrimaryObjectId());
     }
 
+    public void deleteByPrimaryObjectId(String primaryObjectId) {
+        getRepository().deleteByPrimaryObjectId(primaryObjectId);
+    }
+
     public abstract BaseAttachedContentRepository<T> getRepository();
 
 }

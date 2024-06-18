@@ -17,6 +17,13 @@ public interface BaseAttachedContentRepository<T extends AttachedContentBase> ex
                 .fetch();
     }
 
+    default void deleteByPrimaryObjectId(String primaryObjectId) {
+        QueryDslFactory.getQueryFactory()
+                .delete(getQEntity())
+                .where(getPrimaryObjectIdPath().eq(primaryObjectId))
+                .execute();
+    }
+
     StringPath getPrimaryObjectIdPath();
 
 }
