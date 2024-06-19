@@ -20,7 +20,7 @@ public interface CourseRepository extends BaseSearchRepository<Course> {
     default List<CoursePreviewDto> getUserCourseList(UserCourseListRequest request) {
         QCourseMember qCourseMember = QCourseMember.courseMember;
         return QueryDslFactory.getQueryFactory()
-                .select(Projections.bean(CoursePreviewDto.class, qCourse.id, qCourse.name, qCourse.summary, qCourse.userId))
+                .select(Projections.bean(CoursePreviewDto.class, qCourse.id, qCourse.name, qCourse.summary, qCourse.memberId))
                 .from(qCourse)
                 .innerJoin(qCourseMember).on(qCourseMember.courseId.eq(qCourse.id))
                 .where(qCourseMember.userId.eq(request.getUserId()), qCourseMember.memberType.eq(request.getMemberType()))

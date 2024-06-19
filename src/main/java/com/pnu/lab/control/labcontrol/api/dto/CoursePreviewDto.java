@@ -10,6 +10,6 @@ public class CoursePreviewDto {
     private String id;
     private String name;
     private String summary;
-    private String userId;
+    private String ownerId;
 
 }
