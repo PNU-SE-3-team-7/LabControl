@@ -4,15 +4,15 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                    https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
 
-    <changeSet id="add_member_id_to_course" author="arsen">
+    <changeSet id="add_owner_id_to_course" author="arsen">
         <addColumn tableName="course">
-            <column name="member_id" type="varchar(40)">
+            <column name="owner_id" type="varchar(40)">
                 <constraints nullable="false"/>
             </column>
         </addColumn>
 
         <createIndex tableName="course" indexName="course_idx1">
-            <column name="member_id"/>
+            <column name="owner_id"/>
         </createIndex>
     </changeSet>
 </databaseChangeLog>

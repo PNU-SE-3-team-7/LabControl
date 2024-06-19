@@ -18,6 +18,6 @@ public class Course extends BaseEntity {
     @Column(name = "summary")
     private String summary;
     @NotBlank
-    @Column(name = "member_id")
-    private String memberId;
+    @Column(name = "owner_id")
+    private String ownerId;
 }
