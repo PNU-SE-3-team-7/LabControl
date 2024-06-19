@@ -11,7 +11,7 @@
             </column>
         </addColumn>
 
-        <createIndex tableName="course" indexName="course_idx2">
+        <createIndex tableName="course" indexName="course_idx1">
             <column name="user_id"/>
         </createIndex>
     </changeSet>
