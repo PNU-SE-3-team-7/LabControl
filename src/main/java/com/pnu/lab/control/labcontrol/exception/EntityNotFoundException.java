@@ -14,4 +14,8 @@ public class EntityNotFoundException extends RuntimeException {
         this.id = id;
         this.type = type;
     }
+
+    public EntityNotFoundException(String message) {
+        super(message);
+    }
 }

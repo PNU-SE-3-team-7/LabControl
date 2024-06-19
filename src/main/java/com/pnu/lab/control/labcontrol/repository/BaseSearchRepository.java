@@ -7,6 +7,7 @@ import org.springframework.data.repository.NoRepositoryBean;
 
 import java.util.List;
 
+//TODO 6/20/24: Will be removed, I guess... Useless for now :(
 @NoRepositoryBean
 public interface BaseSearchRepository<T extends BaseEntity> extends BaseRepository<T> {
 
