@@ -12,6 +12,10 @@ public abstract class AbstractCommentService<T extends CommentBase> extends Abst
         return getRepository().getCommentList(request.getPrimaryObjectId());
     }
 
+    public void deleteByPrimaryObjectId(String primaryObjectId) {
+        getRepository().deleteByPrimaryObjectId(primaryObjectId);
+    }
+
     public abstract BaseCommentRepository<T> getRepository();
 
 }
