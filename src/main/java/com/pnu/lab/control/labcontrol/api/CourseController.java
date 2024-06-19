@@ -1,6 +1,8 @@
 package com.pnu.lab.control.labcontrol.api;
 
-import com.pnu.lab.control.labcontrol.api.dto.SearchRequest;
+import com.pnu.lab.control.labcontrol.api.dto.ChangeMemberTypeRequest;
+import com.pnu.lab.control.labcontrol.api.dto.CoursePreviewDto;
+import com.pnu.lab.control.labcontrol.api.dto.UserCourseListRequest;
 import com.pnu.lab.control.labcontrol.domain.Course;
 import com.pnu.lab.control.labcontrol.domain.CourseMember;
 import com.pnu.lab.control.labcontrol.service.CourseService;
@@ -8,6 +10,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -35,8 +38,8 @@ public class CourseController {
     }
 
     @PostMapping("/list")
-    public List<Course> getList(@Valid @RequestBody SearchRequest searchRequest) {
-        return courseService.getList(searchRequest);
+    public List<CoursePreviewDto> getUserCourseList(@Valid @RequestBody UserCourseListRequest request) {
+        return courseService.getUserCourseList(request);
     }
 
     @GetMapping("/{id}/member/list")
@@ -47,6 +50,11 @@ public class CourseController {
     @PostMapping("/{id}/member")
     public CourseMember addCourseMember(@PathVariable String id, @Valid @RequestBody CourseMember courseMember) {
         return courseService.addCourseMember(id, courseMember);
+    }
+
+    @PatchMapping("/{id}/member/type")
+    public void changeMemberType(@PathVariable String id, @Valid @RequestBody ChangeMemberTypeRequest request) {
+        courseService.changeMemberType(id, request);
     }
 
     @DeleteMapping("/{id}/member/{userId}")
