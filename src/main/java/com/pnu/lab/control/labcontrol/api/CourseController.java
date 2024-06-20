@@ -50,7 +50,7 @@ public class CourseController {
 
     @GetMapping("/list/byOwner")
     public List<CoursePreviewDto> getCourseListByOwner(@RequestParam String ownerId) {
-        return courseService.getOwnerCourseList(ownerId);
+        return courseService.getCourseListByOwner(ownerId);
     }
 
     @PostMapping("/{id}/member")
