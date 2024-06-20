@@ -29,6 +29,10 @@ public class CourseService extends AbstractSearchService<Course> {
         return repository.getUserCourseList(request);
     }
 
+    public List<CoursePreviewDto> getCourseListByOwner(String ownerId) {
+        return repository.getCourseListByOwner(ownerId);
+    }
+
     public CourseMember addCourseMember(String id, CourseMember courseMember) {
         courseMember.setCourseId(id);
         return courseMemberRepository.save(courseMember);
