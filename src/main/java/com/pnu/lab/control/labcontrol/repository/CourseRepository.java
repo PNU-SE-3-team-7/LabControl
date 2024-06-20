@@ -29,11 +29,11 @@ public interface CourseRepository extends BaseSearchRepository<Course> {
                 .fetch();
     }
 
-    default List<CoursePreviewDto> getOwnerCourseList(String id) {
+    default List<CoursePreviewDto> getOwnerCourseList(String ownerId) {
         return QueryDslFactory.getQueryFactory()
                 .select(Projections.bean(CoursePreviewDto.class, qCourse.id, qCourse.name, qCourse.summary, qCourse.ownerId))
                 .from(qCourse)
-                .where(qCourse.ownerId.eq(id))
+                .where(qCourse.ownerId.eq(ownerId))
                 .fetch();
     }
 

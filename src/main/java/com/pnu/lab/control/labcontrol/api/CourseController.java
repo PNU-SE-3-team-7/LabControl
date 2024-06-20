@@ -48,7 +48,7 @@ public class CourseController {
         return courseService.getCourseMembers(id);
     }
 
-    @GetMapping("/listByOwner")
+    @GetMapping("/list/byOwner")
     public List<CoursePreviewDto> getOwnerCourseList(@RequestParam String ownerId) {
         return courseService.getOwnerCourseList(ownerId);
     }
