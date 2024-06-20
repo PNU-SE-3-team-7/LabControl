@@ -30,7 +30,7 @@ public class CourseService extends AbstractSearchService<Course> {
     }
 
     public List<CoursePreviewDto> getOwnerCourseList(String ownerId) {
-        return repository.getOwnerCourseList(ownerId);
+        return repository.getCourseListByOwner(ownerId);
     }
 
     public CourseMember addCourseMember(String id, CourseMember courseMember) {

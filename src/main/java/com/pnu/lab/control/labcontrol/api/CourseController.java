@@ -49,7 +49,7 @@ public class CourseController {
     }
 
     @GetMapping("/list/byOwner")
-    public List<CoursePreviewDto> getOwnerCourseList(@RequestParam String ownerId) {
+    public List<CoursePreviewDto> getCourseListByOwner(@RequestParam String ownerId) {
         return courseService.getOwnerCourseList(ownerId);
     }
 
