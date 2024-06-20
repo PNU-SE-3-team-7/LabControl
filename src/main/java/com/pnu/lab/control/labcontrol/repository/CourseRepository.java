@@ -29,6 +29,14 @@ public interface CourseRepository extends BaseSearchRepository<Course> {
                 .fetch();
     }
 
+    default List<CoursePreviewDto> getOwnerCourseList(String id) {
+        return QueryDslFactory.getQueryFactory()
+                .select(Projections.bean(CoursePreviewDto.class, qCourse.id, qCourse.name, qCourse.summary, qCourse.ownerId))
+                .from(qCourse)
+                .where(qCourse.ownerId.eq(id))
+                .fetch();
+    }
+
     @Override
     default EntityPathBase<Course> getQEntity() {
         return qCourse;

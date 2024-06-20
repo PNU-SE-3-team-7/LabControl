@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -45,6 +46,11 @@ public class CourseController {
     @GetMapping("/{id}/member/list")
     public List<CourseMember> getCourseMembers(@PathVariable String id) {
         return courseService.getCourseMembers(id);
+    }
+
+    @GetMapping("/listByOwner")
+    public List<CoursePreviewDto> getOwnerCourseList(@RequestParam String ownerId) {
+        return courseService.getOwnerCourseList(ownerId);
     }
 
     @PostMapping("/{id}/member")
