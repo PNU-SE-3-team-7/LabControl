@@ -13,6 +13,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -77,4 +78,8 @@ public class Assignment extends BaseEntity {
     @Min(0)
     @Column(name = "sequence")
     private int sequence;
+
+    public boolean isChild() {
+        return StringUtils.isNoneBlank(parentId);
+    }
 }
