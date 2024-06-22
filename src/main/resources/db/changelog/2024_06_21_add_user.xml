@@ -22,17 +22,22 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
-    </changeSet>
 
-    <changeSet id="add_user_idx" author="Marko-Shevchuk">
         <createIndex tableName="user" indexName="user_idx1">
             <column name="id"/>
         </createIndex>
     </changeSet>
 
     <changeSet id="add_user_fk" author="Marko-Shevchuk">
+
+        <addForeignKeyConstraint baseTableName="course"
+                                 baseColumnNames="owner_id"
+                                 constraintName="course_fk1"
+                                 referencedTableName="user"
+                                 referencedColumnNames="id"/>
+
         <addForeignKeyConstraint baseTableName="course_member"
-                                 baseColumnNames="course_id"
+                                 baseColumnNames="user_id"
                                  constraintName="course_member_fk2"
                                  referencedTableName="user"
                                  referencedColumnNames="id"/>
@@ -42,5 +47,18 @@
                                  constraintName="submission_fk3"
                                  referencedTableName="user"
                                  referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="assignment_comment"
+                                 baseColumnNames="sender_id"
+                                 constraintName="assignment_comment_fk2"
+                                 referencedTableName="user"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="submission_comment"
+                                 baseColumnNames="sender_id"
+                                 constraintName="submission_comment_fk2"
+                                 referencedTableName="user"
+                                 referencedColumnNames="id"/>
+
     </changeSet>
 </databaseChangeLog>
