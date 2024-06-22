@@ -1,13 +1,20 @@
 package com.pnu.lab.control.labcontrol.api;
 
-import com.pnu.lab.control.labcontrol.api.dto.SearchRequest;
+import com.pnu.lab.control.labcontrol.api.validator.SubmissionValidator;
 import com.pnu.lab.control.labcontrol.domain.Submission;
 import com.pnu.lab.control.labcontrol.service.SubmissionService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RequiredArgsConstructor
 @RestController
@@ -15,6 +22,12 @@ import java.util.List;
 public class SubmissionController {
 
     private final SubmissionService service;
+    private final SubmissionValidator validator;
+
+    @InitBinder("submission")
+    public void init(WebDataBinder binder) {
+        binder.addValidators(validator);
+    }
 
     @PostMapping
     public Submission create(@Valid @RequestBody Submission submission) {
@@ -26,9 +39,9 @@ public class SubmissionController {
         return service.update(submission);
     }
 
-    @PostMapping("/list")
-    public List<Submission> getList(@Valid @RequestBody SearchRequest searchRequest) {
-        return service.getList(searchRequest);
+    @GetMapping("/byAssignment/{assignmentId}")
+    public Submission getByAssignmentId(@PathVariable String assignmentId) {
+        return service.getByAssignmentId(assignmentId);
     }
 
     @GetMapping("/{id}")

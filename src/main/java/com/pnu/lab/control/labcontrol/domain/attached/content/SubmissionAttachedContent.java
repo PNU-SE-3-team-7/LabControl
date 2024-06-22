@@ -1,4 +1,5 @@
 package com.pnu.lab.control.labcontrol.domain.attached.content;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
@@ -9,7 +10,7 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "submission_attached_content")
-public class SubmissionAttachedContent extends AttachedContentBase{
-    @Column(name = "submission_id")
+public class SubmissionAttachedContent extends AttachedContentBase {
+    @Column(name = "submission_id", insertable = false, updatable = false)
     private String submissionId;
 }

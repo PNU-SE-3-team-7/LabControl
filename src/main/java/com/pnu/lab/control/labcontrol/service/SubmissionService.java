@@ -12,12 +12,14 @@ public class SubmissionService extends AbstractSearchService<Submission> {
 
     private final SubmissionRepository repository;
     private final SubmissionCommentService commentService;
-    private final SubmissionAttachedContentService attachedContentService;
+
+    public Submission getByAssignmentId(String assignmentId) {
+        return repository.getByAssignmentId(assignmentId);
+    }
 
     @Override
     public void delete(Submission entity) {
         commentService.deleteByPrimaryObjectId(entity.getId());
-        attachedContentService.deleteByPrimaryObjectId(entity.getId());
         super.delete(entity);
     }
 

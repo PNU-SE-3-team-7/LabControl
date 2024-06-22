@@ -7,6 +7,6 @@ import lombok.Setter;
 @Setter
 public class AttachedContentRequest {
 
-    private String primaryObjectId;
+    private String assignmentId;
 
 }

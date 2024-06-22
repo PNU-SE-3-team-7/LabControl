@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 public interface SubmissionRepository extends BaseSearchRepository<Submission> {
     QSubmission qSubmission = QSubmission.submission;
 
+    Submission getByAssignmentId(String assignmentId);
+
     @Override
     default EntityPathBase<Submission> getQEntity() {
         return qSubmission;
