@@ -5,11 +5,9 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class CoursePreviewDto {
-
+public class UserPreviewDto {
     private String id;
-    private String name;
-    private String summary;
-    private UserPreviewDto owner;
-
+    private String firstName;
+    private String lastName;
+    private String email;
 }
