@@ -8,8 +8,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -20,19 +24,23 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "assignment")
 public class Assignment extends BaseEntity {
+    @NotBlank
     @Column(name = "course_id")
     private String courseId;
     @Column(name = "parent_id")
     private String parentId;
+    @NotBlank
     @Column(name = "title")
     private String title;
     @Column(name = "description")
     private String description;
+    @NotNull
     @Enumerated(EnumType.STRING)
     @Column(name = "type")
     private AssignmentType type;
+    @NotNull
     @Column(name = "submission_enabled")
-    private boolean submissionEnabled;
+    private Boolean submissionEnabled;
     @LastModifiedDate
     @Column(name = "updated_date")
     private LocalDateTime updatedDate;
@@ -45,18 +53,33 @@ public class Assignment extends BaseEntity {
     private LocalDateTime visibilityStart;
     @Column(name = "visibility_end")
     private LocalDateTime visibilityEnd;
+    @NotNull
     @Column(name = "visibility")
-    private boolean visibility;
+    private Boolean visibility;
+    @NotNull
     @Enumerated(EnumType.STRING)
     @Column(name = "grade_type")
     private GradeType gradeType;
+    @NotNull
     @Enumerated(EnumType.STRING)
     @Column(name = "auto_type")
     private AutoType autoType;
+    @NotNull
+    @Min(0)
+    @Column(name = "max_grade")
+    private Integer maxGrade;
+    @NotNull
+    @Min(0)
     @Column(name = "weight")
-    private int weight;
+    private Integer weight;
     @Column(name = "threshold")
     private int threshold;
+    @NotNull
+    @Min(0)
     @Column(name = "sequence")
-    private int sequence;
+    private Integer sequence;
+
+    public boolean isChild() {
+        return StringUtils.isNoneBlank(parentId);
+    }
 }

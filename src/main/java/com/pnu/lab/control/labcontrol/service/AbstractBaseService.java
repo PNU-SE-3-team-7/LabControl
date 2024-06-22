@@ -3,8 +3,10 @@ package com.pnu.lab.control.labcontrol.service;
 import com.pnu.lab.control.labcontrol.domain.BaseEntity;
 import com.pnu.lab.control.labcontrol.exception.EntityNotFoundException;
 import com.pnu.lab.control.labcontrol.repository.BaseRepository;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Collection;
+import java.util.List;
 
 @Transactional
 public abstract class AbstractBaseService<T extends BaseEntity> {
@@ -14,12 +16,24 @@ public abstract class AbstractBaseService<T extends BaseEntity> {
                 .orElseThrow(() -> new EntityNotFoundException(id, getType()));
     }
 
+    public boolean existsById(String id) {
+        return getRepository().existsById(id);
+    }
+
     public T create(T entity) {
-        return getRepository().save(entity);
+        return create(List.of(entity)).getFirst();
     }
 
     public T update(T entity) {
-        return getRepository().save(entity);
+        return update(List.of(entity)).getFirst();
+    }
+
+    public List<T> create(Collection<T> entities) {
+        return getRepository().saveAll(entities);
+    }
+
+    public List<T> update(Collection<T> entities) {
+        return getRepository().saveAll(entities);
     }
 
     public void delete(String id) {
