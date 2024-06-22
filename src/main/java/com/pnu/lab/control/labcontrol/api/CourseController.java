@@ -2,6 +2,7 @@ package com.pnu.lab.control.labcontrol.api;
 
 import com.pnu.lab.control.labcontrol.api.dto.ChangeMemberTypeRequest;
 import com.pnu.lab.control.labcontrol.api.dto.CoursePreviewDto;
+import com.pnu.lab.control.labcontrol.api.dto.CourseUserPreviewDto;
 import com.pnu.lab.control.labcontrol.api.dto.UserCourseListRequest;
 import com.pnu.lab.control.labcontrol.domain.Course;
 import com.pnu.lab.control.labcontrol.domain.CourseMember;
@@ -44,7 +45,7 @@ public class CourseController {
     }
 
     @GetMapping("/{id}/member/list")
-    public List<CourseMember> getCourseMembers(@PathVariable String id) {
+    public List<CourseUserPreviewDto> getCourseMembers(@PathVariable String id) {
         return courseService.getCourseMembers(id);
     }
 
