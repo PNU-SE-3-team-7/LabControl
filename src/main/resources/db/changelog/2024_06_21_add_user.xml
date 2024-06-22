@@ -5,9 +5,9 @@
                    https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
 
     <changeSet id="add_user" author="Marko-Shevchuk">
-        <createTable tableName="user">
+        <createTable tableName="app_user">
             <column name="id" type="varchar(40)">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="user_pk"/>
+                <constraints nullable="false" primaryKey="true" primaryKeyName="app_user_pk"/>
             </column>
             <column name="first_name" type="varchar(63)">
                 <constraints nullable="false"/>
@@ -16,60 +16,53 @@
                 <constraints nullable="false"/>
             </column>
             <column name="email" type="varchar(127)">
-                <constraints nullable="false"/>
+                <constraints nullable="false" unique="true"/>
             </column>
             <column name="role" type="varchar(40)">
                 <constraints nullable="false"/>
             </column>
         </createTable>
 
-        <createIndex tableName="user" indexName="user_idx1">
-            <column name="id"/>
+        <createIndex tableName="app_user" indexName="app_user_idx1">
+            <column name="email"/>
         </createIndex>
     </changeSet>
 
-    <changeSet id="add_user_fk" author="Marko-Shevchuk">
+    <changeSet id="add_app_user_fk" author="Marko-Shevchuk">
 
         <addForeignKeyConstraint baseTableName="course"
                                  baseColumnNames="owner_id"
                                  constraintName="course_fk1"
-                                 referencedTableName="user"
+                                 referencedTableName="app_user"
                                  referencedColumnNames="id"/>
 
         <addForeignKeyConstraint baseTableName="course_member"
                                  baseColumnNames="user_id"
                                  constraintName="course_member_fk2"
-                                 referencedTableName="user"
+                                 referencedTableName="app_user"
                                  referencedColumnNames="id"/>
 
         <addForeignKeyConstraint baseTableName="submission"
                                  baseColumnNames="user_id"
                                  constraintName="submission_fk3"
-                                 referencedTableName="user"
+                                 referencedTableName="app_user"
                                  referencedColumnNames="id"/>
 
         <addForeignKeyConstraint baseTableName="assignment_comment"
                                  baseColumnNames="sender_id"
                                  constraintName="assignment_comment_fk2"
-                                 referencedTableName="user"
+                                 referencedTableName="app_user"
                                  referencedColumnNames="id"/>
 
         <addForeignKeyConstraint baseTableName="submission_comment"
                                  baseColumnNames="sender_id"
                                  constraintName="submission_comment_fk2"
-                                 referencedTableName="user"
+                                 referencedTableName="app_user"
                                  referencedColumnNames="id"/>
 
     </changeSet>
 
-    <changeSet id="make_email_unique_and_add_index" author="Marko-Shevchuk">
-        <addUniqueConstraint tableName="user" columnNames="email"/>
-        <createIndex tableName="user" indexName="user_idx2">
-            <column name="email"/>
-        </createIndex>
-    </changeSet>
-
-    <changeSet id="fill_user_data" author="Marko-Shevchuk">
-        <loadData tableName="user" file="db/data/user_data.csv"/>
+    <changeSet id="fill_app_user_data" author="Marko-Shevchuk">
+        <loadData tableName="app_user" file="db/data/user_data.csv"/>
     </changeSet>
 </databaseChangeLog>
