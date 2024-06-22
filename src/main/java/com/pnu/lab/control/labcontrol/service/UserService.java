@@ -6,11 +6,17 @@ import com.pnu.lab.control.labcontrol.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class UserService extends AbstractBaseService<User> {
 
     private final UserRepository repository;
+
+    public Optional<User> getByEmail(String email) {
+        return repository.getUserByEmail(email);
+    }
 
     @Override
     public Class<User> getType() {
