@@ -1,0 +1,17 @@
+package com.pnu.lab.control.labcontrol.api.dto;
+
+import com.pnu.lab.control.labcontrol.constant.MemberType;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+public class CourseUserPreviewDto {
+
+    private String id;
+    private String firstName;
+    private String lastName;
+    private String email;
+    private MemberType memberType;
+
+}

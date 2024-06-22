@@ -2,6 +2,7 @@ package com.pnu.lab.control.labcontrol.service;
 
 import com.pnu.lab.control.labcontrol.api.dto.ChangeMemberTypeRequest;
 import com.pnu.lab.control.labcontrol.api.dto.CoursePreviewDto;
+import com.pnu.lab.control.labcontrol.api.dto.CourseUserPreviewDto;
 import com.pnu.lab.control.labcontrol.api.dto.UserCourseListRequest;
 import com.pnu.lab.control.labcontrol.domain.Course;
 import com.pnu.lab.control.labcontrol.domain.CourseMember;
@@ -21,7 +22,7 @@ public class CourseService extends AbstractSearchService<Course> {
     private final CourseRepository repository;
     private final CourseMemberRepository courseMemberRepository;
 
-    public List<CourseMember> getCourseMembers(String id) {
+    public List<CourseUserPreviewDto> getCourseMembers(String id) {
         return courseMemberRepository.getCourseMembers(id);
     }
 
