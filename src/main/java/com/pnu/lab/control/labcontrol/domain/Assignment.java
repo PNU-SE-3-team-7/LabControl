@@ -40,7 +40,7 @@ public class Assignment extends BaseEntity {
     private AssignmentType type;
     @NotNull
     @Column(name = "submission_enabled")
-    private boolean submissionEnabled;
+    private Boolean submissionEnabled;
     @LastModifiedDate
     @Column(name = "updated_date")
     private LocalDateTime updatedDate;
@@ -55,7 +55,7 @@ public class Assignment extends BaseEntity {
     private LocalDateTime visibilityEnd;
     @NotNull
     @Column(name = "visibility")
-    private boolean visibility;
+    private Boolean visibility;
     @NotNull
     @Enumerated(EnumType.STRING)
     @Column(name = "grade_type")
@@ -67,17 +67,17 @@ public class Assignment extends BaseEntity {
     @NotNull
     @Min(0)
     @Column(name = "max_grade")
-    private int maxGrade;
+    private Integer maxGrade;
     @NotNull
     @Min(0)
     @Column(name = "weight")
-    private int weight;
+    private Integer weight;
     @Column(name = "threshold")
     private int threshold;
     @NotNull
     @Min(0)
     @Column(name = "sequence")
-    private int sequence;
+    private Integer sequence;
 
     public boolean isChild() {
         return StringUtils.isNoneBlank(parentId);
