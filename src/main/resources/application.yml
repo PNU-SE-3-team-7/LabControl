@@ -13,6 +13,9 @@ spring:
     hibernate:
       ddl-auto: validate
 
+security:
+  starts: Bearer
+
 ---
 spring:
   config:
@@ -27,6 +30,10 @@ spring:
   jpa:
     show-sql: true
 
+security:
+  secret: secret
+  lifetime: 36000
+
 ---
 spring:
   config:
@@ -38,3 +45,7 @@ spring:
     url: ${LAB_DB_URL}
     username: ${LAB_DB_USERNAME}
     password: ${LAB_DB_PASSWORD}
+
+security:
+  secret: ${LAB_AUTH_SECRET}
+  lifetime: ${LAB_TOKEN_LIFE_TIME}
