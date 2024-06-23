@@ -66,7 +66,7 @@ public class Submission extends BaseEntity {
     @Valid
     @NotEmpty
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "submission_guid")
+    @JoinColumn(name = "submission_id")
     private List<SubmissionAttachedContent> attachments;
 
     public boolean isChild() {

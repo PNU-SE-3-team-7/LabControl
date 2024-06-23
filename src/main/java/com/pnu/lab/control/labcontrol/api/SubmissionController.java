@@ -1,5 +1,6 @@
 package com.pnu.lab.control.labcontrol.api;
 
+import com.pnu.lab.control.labcontrol.api.dto.ChangeGradeSubmissionRequest;
 import com.pnu.lab.control.labcontrol.api.validator.SubmissionValidator;
 import com.pnu.lab.control.labcontrol.domain.Submission;
 import com.pnu.lab.control.labcontrol.service.SubmissionService;
@@ -47,6 +48,11 @@ public class SubmissionController {
     @GetMapping("/{id}")
     public Submission getById(@PathVariable String id) {
         return service.findOne(id);
+    }
+
+    @PutMapping("/grade")
+    public Submission changeGrade(@Valid @RequestBody ChangeGradeSubmissionRequest request) {
+        return service.changeGrade(request);
     }
 
     @DeleteMapping("/{id}")

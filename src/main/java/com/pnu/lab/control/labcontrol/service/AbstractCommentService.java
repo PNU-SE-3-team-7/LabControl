@@ -4,6 +4,7 @@ import com.pnu.lab.control.labcontrol.api.dto.CommentRequest;
 import com.pnu.lab.control.labcontrol.domain.comment.CommentBase;
 import com.pnu.lab.control.labcontrol.repository.BaseCommentRepository;
 
+import java.util.Collection;
 import java.util.List;
 
 public abstract class AbstractCommentService<T extends CommentBase> extends AbstractBaseService<T> {
@@ -14,6 +15,10 @@ public abstract class AbstractCommentService<T extends CommentBase> extends Abst
 
     public void deleteByPrimaryObjectId(String primaryObjectId) {
         getRepository().deleteByPrimaryObjectId(primaryObjectId);
+    }
+
+    public void deleteByPrimaryObjectIds(Collection<String> primaryObjectIds) {
+        getRepository().deleteByPrimaryObjectIds(primaryObjectIds);
     }
 
     public abstract BaseCommentRepository<T> getRepository();

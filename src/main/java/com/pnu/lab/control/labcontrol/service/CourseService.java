@@ -10,7 +10,9 @@ import com.pnu.lab.control.labcontrol.exception.EntityNotFoundException;
 import com.pnu.lab.control.labcontrol.repository.BaseSearchRepository;
 import com.pnu.lab.control.labcontrol.repository.CourseMemberRepository;
 import com.pnu.lab.control.labcontrol.repository.CourseRepository;
+import com.pnu.lab.control.labcontrol.service.event.UserLeaveCourseEvent;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,6 +23,7 @@ public class CourseService extends AbstractSearchService<Course> {
 
     private final CourseRepository repository;
     private final CourseMemberRepository courseMemberRepository;
+    private final ApplicationEventPublisher applicationEventPublisher;
 
     public List<CourseUserPreviewDto> getCourseMembers(String id) {
         return courseMemberRepository.getCourseMembers(id);
@@ -53,6 +56,7 @@ public class CourseService extends AbstractSearchService<Course> {
 
     public void deleteCourseMember(String id, String userId) {
         courseMemberRepository.deleteByCourseIdAndUserId(id, userId);
+        applicationEventPublisher.publishEvent(new UserLeaveCourseEvent(id, userId));
     }
 
     @Override

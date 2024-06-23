@@ -1,6 +1,7 @@
 package com.pnu.lab.control.labcontrol.api;
 
 import com.pnu.lab.control.labcontrol.api.dto.AssignmentPreviewDto;
+import com.pnu.lab.control.labcontrol.api.dto.AssignmentSearchRequest;
 import com.pnu.lab.control.labcontrol.api.validator.AssignmentValidator;
 import com.pnu.lab.control.labcontrol.domain.Assignment;
 import com.pnu.lab.control.labcontrol.service.AssignmentService;
@@ -15,7 +16,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -43,14 +43,9 @@ public class AssignmentController {
         return service.update(assignment);
     }
 
-    @GetMapping("/list/byCourse")
-    public List<AssignmentPreviewDto> getListByCourseId(@RequestParam String courseId, @RequestParam String userId) {
-        return service.getListByCourseId(courseId, userId);
-    }
-
-    @GetMapping("/list/byAssignment")
-    public List<Assignment> getListByAssignmentId(@RequestBody String assignmentId, @RequestParam String userId) {
-        return service.getListByAssignmentId(assignmentId, userId);
+    @PostMapping("/list")
+    public List<AssignmentPreviewDto> getList(@RequestBody AssignmentSearchRequest request) {
+        return service.getList(request);
     }
 
     @GetMapping("/{id}")

@@ -6,6 +6,7 @@ import com.pnu.lab.control.labcontrol.repository.BaseRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -18,8 +19,8 @@ public class AssignmentAttachedContentService extends AbstractBaseService<Assign
         return repository.getAttachedContentList(assignmentId);
     }
 
-    public void deleteByAssignmentId(String assignmentId) {
-        repository.deleteByAssignmentId(assignmentId);
+    public void deleteByAssignmentIds(Collection<String> assignmentIds) {
+        repository.deleteByAssignmentIds(assignmentIds);
     }
 
     @Override

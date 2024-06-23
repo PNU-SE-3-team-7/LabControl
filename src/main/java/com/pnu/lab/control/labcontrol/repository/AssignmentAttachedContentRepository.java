@@ -7,6 +7,7 @@ import com.pnu.lab.control.labcontrol.utils.QueryDslFactory;
 import com.querydsl.core.types.dsl.EntityPathBase;
 import org.springframework.stereotype.Repository;
 
+import java.util.Collection;
 import java.util.List;
 
 @Repository
@@ -24,6 +25,13 @@ public interface AssignmentAttachedContentRepository extends BaseSearchRepositor
         QueryDslFactory.getQueryFactory()
                 .delete(qAssignmentAttachedContent)
                 .where(qAssignmentAttachedContent.assignmentId.eq(primaryObjectId))
+                .execute();
+    }
+
+    default void deleteByAssignmentIds(Collection<String> assignmentIds) {
+        QueryDslFactory.getQueryFactory()
+                .delete(qAssignmentAttachedContent)
+                .where(qAssignmentAttachedContent.assignmentId.in(assignmentIds))
                 .execute();
     }
 

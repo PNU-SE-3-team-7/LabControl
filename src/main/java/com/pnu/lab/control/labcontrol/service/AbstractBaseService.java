@@ -3,6 +3,7 @@ package com.pnu.lab.control.labcontrol.service;
 import com.pnu.lab.control.labcontrol.domain.BaseEntity;
 import com.pnu.lab.control.labcontrol.exception.EntityNotFoundException;
 import com.pnu.lab.control.labcontrol.repository.BaseRepository;
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
@@ -14,6 +15,13 @@ public abstract class AbstractBaseService<T extends BaseEntity> {
     public T findOne(String id) {
         return getRepository().findById(id)
                 .orElseThrow(() -> new EntityNotFoundException(id, getType()));
+    }
+
+    public List<T> findAll(Collection<String> ids) {
+        if (CollectionUtils.isEmpty(ids)) {
+            return List.of();
+        }
+        return getRepository().findAllById(ids);
     }
 
     public boolean existsById(String id) {
