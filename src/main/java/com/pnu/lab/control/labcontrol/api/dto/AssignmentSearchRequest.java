@@ -5,8 +5,9 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class AttachedContentRequest {
+public class AssignmentSearchRequest {
 
     private String assignmentId;
+    private String courseId;
 
 }

@@ -5,6 +5,7 @@ import com.pnu.lab.control.labcontrol.utils.QueryDslFactory;
 import com.querydsl.core.types.dsl.StringPath;
 import org.springframework.data.repository.NoRepositoryBean;
 
+import java.util.Collection;
 import java.util.List;
 
 @NoRepositoryBean
@@ -24,6 +25,12 @@ public interface BaseCommentRepository<T extends CommentBase> extends BaseSearch
                 .execute();
     }
 
-    StringPath getPrimaryObjectIdPath();
+    default void deleteByPrimaryObjectIds(Collection<String> primaryObjectIds) {
+        QueryDslFactory.getQueryFactory()
+                .delete(getQEntity())
+                .where(getPrimaryObjectIdPath().in(primaryObjectIds))
+                .execute();
+    }
 
+    StringPath getPrimaryObjectIdPath();
 }

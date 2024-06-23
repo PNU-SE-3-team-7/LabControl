@@ -10,6 +10,10 @@ public class UserUtils {
 
     public static final String ROLE_PREFIX = "ROLE_";
 
+    public static String getUserId() {
+        return getUserInfo().getId();
+    }
+
     public static boolean hasRole(Role role) {
         return getAuthentication().getAuthorities()
                 .contains(new SimpleGrantedAuthority(ROLE_PREFIX + role.name()));

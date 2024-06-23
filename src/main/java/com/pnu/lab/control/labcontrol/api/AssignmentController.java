@@ -1,6 +1,7 @@
 package com.pnu.lab.control.labcontrol.api;
 
-import com.pnu.lab.control.labcontrol.api.dto.SearchRequest;
+import com.pnu.lab.control.labcontrol.api.dto.AssignmentPreviewDto;
+import com.pnu.lab.control.labcontrol.api.dto.AssignmentSearchRequest;
 import com.pnu.lab.control.labcontrol.api.validator.AssignmentValidator;
 import com.pnu.lab.control.labcontrol.domain.Assignment;
 import com.pnu.lab.control.labcontrol.service.AssignmentService;
@@ -43,8 +44,8 @@ public class AssignmentController {
     }
 
     @PostMapping("/list")
-    public List<Assignment> getList(@Valid @RequestBody SearchRequest searchRequest) {
-        return service.getList(searchRequest);
+    public List<AssignmentPreviewDto> getList(@RequestBody AssignmentSearchRequest request) {
+        return service.getList(request);
     }
 
     @GetMapping("/{id}")
