@@ -29,7 +29,7 @@ public class CourseController {
 
     private final CourseService courseService;
 
-    @GetMapping("/{id}/")
+    @GetMapping("/{id}")
     public Course findOne(@PathVariable String id) {
         return courseService.findOne(id);
     }
