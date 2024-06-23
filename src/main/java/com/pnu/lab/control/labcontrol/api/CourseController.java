@@ -29,6 +29,11 @@ public class CourseController {
 
     private final CourseService courseService;
 
+    @GetMapping("/{id}/")
+    public Course findOne(@PathVariable String id) {
+        return courseService.findOne(id);
+    }
+
     @PostMapping
     public Course create(@Valid @RequestBody Course course) {
         return courseService.create(course);
