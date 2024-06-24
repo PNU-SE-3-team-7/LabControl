@@ -9,6 +9,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.IdClass;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -27,7 +28,7 @@ public class CourseMember {
     @Id
     @Column(name = "course_id")
     private String courseId;
-    @NotBlank
+    @NotNull
     @Enumerated(EnumType.STRING)
     @Column(name = "member_type")
     private MemberType memberType;
